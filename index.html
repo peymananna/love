@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Love ❤️</title>
+    <style>
+        /* Style for the body and other elements */
+        body {
+            background: linear-gradient(to right, #2c3e50, #4ca1af);
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        h1 {
+            color: #ecf0f1;
+            font-size: 3em;
+            z-index: 10;
+            margin: 0;
+        }
+        #message {
+            color: #ecf0f1;
+            font-size: 1.5em;
+            z-index: 10;
+            margin: 20px 0;
+        }
+        .hidden-message {
+            display: none;
+            color: #ffeb3b;
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            z-index: 10;
+        }
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .heart {
+            position: absolute;
+            color: #e74c3c;
+            font-size: 2em;
+            animation: hearts 5s linear infinite;
+        }
+
+        @keyframes hearts {
+            0% {transform: translateY(0) scale(1); opacity: 1;}
+            100% {transform: translateY(-100vh) scale(0.5); opacity: 0;}
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            #message {
+                font-size: 1.2em;
+            }
+            button {
+                font-size: 0.9em;
+                padding: 8px 16px;
+            }
+            .hidden-message {
+                font-size: 1.2em;
+            }
+            .heart {
+                font-size: 1.5em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5em;
+            }
+            #message {
+                font-size: 1em;
+            }
+            button {
+                font-size: 0.8em;
+                padding: 6px 12px;
+            }
+            .hidden-message {
+                font-size: 1em;
+            }
+            .heart {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>❤️ My Love, This Page is for You! ❤️</h1>
+    <p id="message"></p>
+    <div class="buttons-container">
+        <button onclick="playAudio()">Play Music</button>
+        <button onclick="window.location.href='poems.html'">Poems for You</button>
+        <button onclick="window.location.href='story.html'">Our Story</button>
+    </div>
+    <p class="hidden-message" id="secretMessage">You are the best thing that ever happened to me! 💖</p>
+    
+    <audio id="audio" preload="auto">
+        <source src="song1.mp3" type="audio/mp3">
+        <source src="song2.mp3" type="audio/mp3">
+        <source src="song3.mp3" type="audio/mp3">
+        <source src="song4.mp3" type="audio/mp3">
+        <source src="song5.mp3" type="audio/mp3">
+        <source src="song6.mp3" type="audio/mp3">
+        <source src="song7.mp3" type="audio/mp3">
+        <source src="song8.mp3" type="audio/mp3">
+        <source src="song9.mp3" type="audio/mp3">
+        <source src="song10.mp3" type="audio/mp3">
+    </audio>
+    
+    <script>
+        const loveMessage = "You are my world, my heart, and my forever. Every heartbeat whispers your name, and every moment with you is magical.";
+        let typingIndex = 0;
+
+        function typeMessage() {
+            if (typingIndex < loveMessage.length) {
+                document.getElementById("message").innerHTML += loveMessage.charAt(typingIndex);
+                typingIndex++;
+                setTimeout(typeMessage, 50);
+            }
+        }
+
+        typeMessage();
+
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 2 + 3 + "s";
+            heart.innerHTML = "❤️";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+        
+        setInterval(createHeart, 300);
+
+        function playAudio() {
+            const songs = [
+                'song1.mp3', 
+                'song2.mp3', 
+                'song3.mp3', 
+                'song4.mp3', 
+                'song5.mp3', 
+                'song6.mp3', 
+                'song7.mp3', 
+                'song8.mp3', 
+                'song9.mp3', 
+                'song10.mp3'
+            ];
+            const randomSong = songs[Math.floor(Math.random() * songs.length)];
+            const audio = document.getElementById("audio");
+            audio.src = randomSong;
+            audio.play();
+            document.querySelector("button").style.display = "none"; // Hide the button after play
+            document.getElementById("secretMessage").style.display = "block"; // Show the secret message
+        }
+
+        function showMessage() {
+            document.getElementById("secretMessage").style.display = "block";
+        }
+    </script>
+</body>
+</html>
