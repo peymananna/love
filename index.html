@@ -93,7 +93,7 @@
 
         @media (max-width: 480px) {
             h1 {
-                font-size: 2em; /* Smaller size for mobile phones */
+                font-size: 1.4em; /* Smaller size for mobile phones */
             }
             #message {
                 font-size: 1em;
@@ -118,7 +118,8 @@
     <h1>❤️ My Love, This Page is for You! ❤️</h1>
     <p id="message"></p>
     <div class="buttons-container">
-        <button onclick="playAudio()">Play Music</button>
+        <button id="playButton" onclick="playAudio()">Play Music</button>
+        <button id="nextButton" onclick="nextSong()" style="display:none;">Next Song</button>
         <button onclick="window.location.href='poems.html'">Poems for You</button>
         <button onclick="window.location.href='story.html'">Our Story</button>
     </div>
@@ -140,6 +141,7 @@
     <script>
         const loveMessage = "You are my world, my heart, and my forever. Every heartbeat whispers your name, and every moment with you is magical.";
         let typingIndex = 0;
+        let currentSongIndex = 0;
 
         function typeMessage() {
             if (typingIndex < loveMessage.length) {
@@ -176,16 +178,29 @@
                 'song9.mp3', 
                 'song10.mp3'
             ];
-            const randomSong = songs[Math.floor(Math.random() * songs.length)];
             const audio = document.getElementById("audio");
-            audio.src = randomSong;
+            audio.src = songs[currentSongIndex];
             audio.play();
-            document.querySelector("button").style.display = "none"; // Hide the button after play
+            document.getElementById("playButton").style.display = "none"; // Hide the play button
+            document.getElementById("nextButton").style.display = "inline-block"; // Show the next song button
             document.getElementById("secretMessage").style.display = "block"; // Show the secret message
         }
 
-        function showMessage() {
-            document.getElementById("secretMessage").style.display = "block";
+        function nextSong() {
+            const songs = [
+                'song1.mp3', 
+                'song2.mp3', 
+                'song3.mp3', 
+                'song4.mp3', 
+                'song5.mp3', 
+                'song6.mp3', 
+                'song7.mp3', 
+                'song8.mp3', 
+                'song9.mp3', 
+                'song10.mp3'
+            ];
+            currentSongIndex = (currentSongIndex + 1) % songs.length; // Move to the next song, loop back to the first
+            playAudio(); // Play the next song
         }
     </script>
 </body>
