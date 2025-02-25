@@ -33,39 +33,40 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 20px;
             padding: 20px;
         }
 
-        .gallery img {
-            width: 250px;
-            height: 250px;
+        .image-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 15px;
-            object-fit: cover;
+            padding: 15px;
             box-shadow: 0px 5px 15px rgba(255, 105, 180, 0.3);
-            transition: transform 0.4s ease-in-out, box-shadow 0.3s;
+            max-width: 300px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
-        .gallery img:hover {
-            transform: scale(1.1);
-            box-shadow: 0px 10px 30px rgba(255, 105, 180, 0.5);
+        .image-box img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            object-fit: cover;
         }
 
-        /* انیمیشن قلب‌های متحرک */
-        .heart {
-            position: absolute;
-            color: #f83d83;
-            font-size: 24px;
-            opacity: 0.9;
-            animation: floatingHearts 5s infinite linear;
+        .date-box {
+            margin-top: 10px;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
         }
 
-        @keyframes floatingHearts {
-            0% { transform: translateY(0); opacity: 1; }
-            100% { transform: translateY(-100px); opacity: 0; }
-        }
-
-        /* استایل پاپ‌آپ */
         .popup {
             display: none;
             position: fixed;
@@ -97,7 +98,6 @@
             background: #f0505c;
         }
 
-        /* دکمه پایین صفحه */
         .go-home {
             position: absolute;
             bottom: 20px;
@@ -116,12 +116,10 @@
             background-color: #f0505c;
         }
 
-        /* موزیک پس‌زمینه */
         audio {
             display: none;
         }
 
-        /* ریسپانسیو: تنظیمات موبایل */
         @media (max-width: 768px) {
             h1 {
                 font-size: 28px;
@@ -137,13 +135,8 @@
                 padding: 12px;
                 font-size: 16px;
             }
-
-            .heart {
-                font-size: 18px;
-            }
         }
 
-        /* ریسپانسیو: تنظیمات موبایل خیلی کوچک */
         @media (max-width: 480px) {
             h1 {
                 font-size: 22px;
@@ -159,10 +152,6 @@
                 padding: 10px;
                 font-size: 14px;
             }
-
-            .heart {
-                font-size: 16px;
-            }
         }
     </style>
 </head>
@@ -171,23 +160,21 @@
     <div class="container">
         <h1>❤️our story❤️</h1>
         <div class="gallery" id="gallery">
-            <!-- اینجا عکس‌ها را قرار بده -->
-            <img src=".//PHOTO-2025-02-25-10-49-01.jpg" alt="me and my love ❤️ 1403/12/06">
-            <!-- <img src="image1.jpg" alt="پیمان و کیمیا"> -->
+            <div class="image-box">
+                <img src="./PHOTO-2025-02-25-10-49-01.jpg" alt="me and my love ❤️">
+                <div class="date-box">1403/12/06</div>
+            </div>
         </div>
     </div>
 
-    <!-- پاپ‌آپ نوتیفیکیشن -->
     <div id="popup" class="popup">
         کیمیا لطفا با پیمان بیشتر عکس بگیر تا در این سایت آپلود شود
         <br>
         <button onclick="closePopup()">باشه 😍</button>
     </div>
 
-    <!-- دکمه پایین صفحه -->
     <button class="go-home" onclick="window.location.href='index.html'">به صفحه اصلی برو</button>
 
-    <!-- موزیک پس‌زمینه -->
     <audio autoplay loop>
         <source src="song4.mp3" type="audio/mp3">
         Your browser does not support the audio element.
@@ -197,7 +184,6 @@
         function checkImages() {
             let images = document.querySelectorAll(".gallery img");
             let popup = document.getElementById("popup");
-
             if (images.length === 0) {
                 popup.style.display = "block";
             }
@@ -207,27 +193,8 @@
             document.getElementById("popup").style.display = "none";
         }
 
-        // اجرای تابع هر 5 دقیقه (300000 میلی‌ثانیه)
         setInterval(checkImages, 300000);
-
-        // بررسی اولیه هنگام لود شدن سایت
         window.onload = checkImages;
-
-        // ایجاد قلب‌های شناور
-        function createHeart() {
-            let heart = document.createElement("div");
-            heart.classList.add("heart");
-            heart.innerHTML = "❤️";
-            heart.style.left = Math.random() * window.innerWidth + "px";
-            heart.style.top = window.innerHeight + "px";
-            document.body.appendChild(heart);
-
-            setTimeout(() => {
-                heart.remove();
-            }, 5000);
-        }
-
-        setInterval(createHeart, 1000);
     </script>
 
 </body>
