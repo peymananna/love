@@ -13,7 +13,7 @@
             text-align: center;
             margin: 0;
             padding: 0;
-            overflow: hidden;
+            overflow-x: hidden;
             color: #333;
         }
 
@@ -45,17 +45,24 @@
             border-radius: 15px;
             padding: 15px;
             box-shadow: 0px 5px 15px rgba(255, 105, 180, 0.3);
-            max-width: 300px;
+            width: 250px;
             text-align: center;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .image-box:hover {
+            transform: scale(1.05);
         }
 
         .image-box img {
-            width: 100%;
-            height: auto;
+            width: 250px;
+            height: 250px;
             border-radius: 10px;
             object-fit: cover;
+            transition: transform 0.3s;
         }
 
         .date-box {
@@ -67,37 +74,28 @@
             font-weight: bold;
         }
 
-        .popup {
+        /* استایل مدال برای نمایش عکس فول اسکرین */
+        .modal {
             display: none;
             position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(255, 255, 255, 0.8);
-            padding: 20px;
+            z-index: 10;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal img {
+            max-width: 90%;
+            max-height: 90%;
             border-radius: 10px;
-            box-shadow: 0px 5px 15px rgba(255, 105, 180, 0.5);
-            font-size: 18px;
-            color: #f83d83;
-            font-weight: bold;
-            z-index: 3;
-            text-align: center;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
         }
 
-        .popup button {
-            background: #f83d83;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        .popup button:hover {
-            background: #f0505c;
-        }
-
+        /* استایل دکمه برگشت */
         .go-home {
             position: absolute;
             bottom: 20px;
@@ -116,10 +114,7 @@
             background-color: #f0505c;
         }
 
-        audio {
-            display: none;
-        }
-
+        /* ریسپانسیو برای موبایل */
         @media (max-width: 768px) {
             h1 {
                 font-size: 28px;
@@ -130,10 +125,8 @@
                 height: 200px;
             }
 
-            .go-home {
-                width: 150px;
-                padding: 12px;
-                font-size: 16px;
+            .image-box {
+                width: 200px;
             }
         }
 
@@ -147,54 +140,58 @@
                 height: 150px;
             }
 
+            .image-box {
+                width: 150px;
+            }
+
             .go-home {
                 width: 120px;
                 padding: 10px;
                 font-size: 14px;
             }
         }
+
     </style>
 </head>
 <body>
 
     <div class="container">
         <h1>❤️our story❤️</h1>
-        <div class="gallery" id="gallery">
-            <div class="image-box">
-                <img src="./PHOTO-2025-02-25-10-49-01.jpg" alt="me and my love ❤️">
+        <div class="gallery">
+            <div class="image-box" onclick="openModal('.//PHOTO-2025-02-25-10-49-01.jpg')">
+                <img src=".//PHOTO-2025-02-25-10-49-01.jpg" alt="me and my love ❤️">
                 <div class="date-box">1403/12/06</div>
             </div>
         </div>
     </div>
 
-    <div id="popup" class="popup">
-        کیمیا لطفا با پیمان بیشتر عکس بگیر تا در این سایت آپلود شود
-        <br>
-        <button onclick="closePopup()">باشه 😍</button>
+    <!-- مدال نمایش عکس -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <img id="modalImg" src="">
     </div>
 
+    <!-- دکمه برگشت -->
     <button class="go-home" onclick="window.location.href='index.html'">به صفحه اصلی برو</button>
 
-    <audio autoplay loop>
-        <source src="song4.mp3" type="audio/mp3">
-        Your browser does not support the audio element.
-    </audio>
-
     <script>
-        function checkImages() {
-            let images = document.querySelectorAll(".gallery img");
-            let popup = document.getElementById("popup");
-            if (images.length === 0) {
-                popup.style.display = "block";
+        function openModal(imageSrc) {
+            let modal = document.getElementById("imageModal");
+            let modalImg = document.getElementById("modalImg");
+
+            modal.style.display = "flex";
+            modalImg.src = imageSrc;
+        }
+
+        function closeModal() {
+            document.getElementById("imageModal").style.display = "none";
+        }
+
+        // بستن مدال با دکمه Esc
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "Escape") {
+                closeModal();
             }
-        }
-
-        function closePopup() {
-            document.getElementById("popup").style.display = "none";
-        }
-
-        setInterval(checkImages, 300000);
-        window.onload = checkImages;
+        });
     </script>
 
 </body>
