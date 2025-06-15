@@ -1,199 +1,242 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>our story❤️</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Lalezar&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>our story ❤️</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Lalezar&display=swap');
 
-        body {
-            font-family: 'Lalezar', cursive;
-            background: linear-gradient(135deg, #f0e6f6, #fbd1f4);
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-            color: #333;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        .container {
-            margin-top: 50px;
-            position: relative;
-            z-index: 2;
-        }
+    body {
+      font-family: 'Lalezar', cursive;
+      background: linear-gradient(135deg, #1f1c2c, #928DAB);
+      background-size: 300% 300%;
+      animation: gradient 20s ease infinite;
+      color: #fff;
+      text-align: center;
+      min-height: 100vh;
+      padding-bottom: 100px;
+      overflow-x: hidden;
+    }
 
-        h1 {
-            color: #d05b95;
-            font-size: 40px;
-            text-shadow: 0 0 15px rgba(208, 91, 149, 0.8);
-        }
+    @keyframes gradient {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
 
-        .gallery {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            padding: 20px;
-        }
+    h1 {
+      font-size: 50px;
+      margin-top: 30px;
+      color: #fff;
+      text-shadow: 0 0 25px rgba(255, 192, 203, 0.8);
+    }
 
-        .image-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
-            padding: 15px;
-            box-shadow: 0px 5px 15px rgba(255, 105, 180, 0.3);
-            width: 250px;
-            text-align: center;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            cursor: pointer;
-            transition: transform 0.3s ease-in-out;
-        }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 40px;
+      gap: 25px;
+    }
 
-        .image-box:hover {
-            transform: scale(1.05);
-        }
+    .image-box {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 15px;
+      box-shadow: 0 8px 30px rgba(255, 105, 180, 0.2);
+      backdrop-filter: blur(12px);
+      transition: transform 0.3s ease, box-shadow 0.3s;
+      cursor: pointer;
+      width: 240px;
+    }
 
-        .image-box img {
-            width: 250px;
-            height: 250px;
-            border-radius: 10px;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
+    .image-box:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(255, 105, 180, 0.3);
+    }
 
-        .date-box {
-            margin-top: 10px;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-        }
+    .image-box img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
 
-        /* استایل مدال برای نمایش عکس فول اسکرین */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 10;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            justify-content: center;
-            align-items: center;
-        }
+    .date-box {
+      margin-top: 10px;
+      font-size: 16px;
+      color: #fce4ec;
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+    }
 
-        .modal img {
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-        }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.85);
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
 
-        /* استایل دکمه برگشت */
-        .go-home {
-            position: absolute;
-            bottom: 20px;
-            width: 200px;
-            padding: 15px;
-            background-color: #f83d83;
-            color: white;
-            font-size: 18px;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
+    .modal img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+      box-shadow: 0 0 40px rgba(255, 255, 255, 0.4);
+    }
 
-        .go-home:hover {
-            background-color: #f0505c;
-        }
+    .go-home, .play-music {
+      position: fixed;
+      bottom: 20px;
+      padding: 12px 28px;
+      font-size: 18px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      z-index: 20;
+      background: linear-gradient(to right, #ff4b2b, #ff416c);
+      color: #fff;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      transition: transform 0.2s ease;
+    }
 
-        /* ریسپانسیو برای موبایل */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 28px;
-            }
+    .go-home:hover, .play-music:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 25px rgba(255,105,180,0.4);
+    }
 
-            .gallery img {
-                width: 200px;
-                height: 200px;
-            }
+    .go-home {
+      left: 50%;
+      transform: translateX(-50%);
+    }
 
-            .image-box {
-                width: 200px;
-            }
-        }
+    .play-music {
+      left: 20px;
+    }
 
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 22px;
-            }
+    @media (max-width: 768px) {
+      h1 { font-size: 36px; }
+      .image-box { width: 180px; }
+      .image-box img { height: 180px; }
+    }
 
-            .gallery img {
-                width: 150px;
-                height: 150px;
-            }
-
-            .image-box {
-                width: 150px;
-            }
-
-            .go-home {
-                width: 120px;
-                padding: 10px;
-                font-size: 14px;
-            }
-        }
-
-    </style>
+    @media (max-width: 480px) {
+      h1 { font-size: 26px; }
+      .image-box { width: 150px; }
+      .image-box img { height: 150px; }
+      .go-home, .play-music { font-size: 14px; padding: 10px 20px; }
+    }
+  </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>❤️our story❤️</h1>
-        <div class="gallery">
-            <div class="image-box" onclick="openModal('.//PHOTO-2025-02-25-10-49-01.jpg')">
-                <img src=".//PHOTO-2025-02-25-10-49-01.jpg" alt="me and my love ❤️">
-                <img src=".//IMAGE 2025-06-15 14:26:54.jpg" alt="">
-                <div class="date-box">1403/12/06</div>
-            </div>
-        </div>
-    </div>
+  <h1>❤️ Our Beautiful Story ❤️</h1>
 
-    <!-- مدال نمایش عکس -->
-    <div id="imageModal" class="modal" onclick="closeModal()">
-        <img id="modalImg" src="">
-    </div>
+  <div class="gallery" id="gallery">
+    <!-- تصاویر به صورت داینامیک اضافه می‌شن -->
+  </div>
 
-    <!-- دکمه برگشت -->
-    <button class="go-home" onclick="window.location.href='index.html'">به صفحه اصلی برو</button>
+  <div id="imageModal" class="modal" onclick="closeModal()">
+    <img id="modalImg" src="">
+  </div>
 
-    <script>
-        function openModal(imageSrc) {
-            let modal = document.getElementById("imageModal");
-            let modalImg = document.getElementById("modalImg");
+  <button class="go-home" onclick="window.location.href='index.html'">بازگشت به خانه</button>
+  <button class="play-music" onclick="playMusic()">🎵 پخش موزیک</button>
+  <audio id="bgMusic" loop>
+    <source src=".//song4.mp3" type="audio/mpeg">
+    مرورگر شما پشتیبانی نمی‌کند.
+  </audio>
 
-            modal.style.display = "flex";
-            modalImg.src = imageSrc;
-        }
+  <script>
+    const images = [
+      "PHOTO-2025-02-25-10-49-01.jpg",
+      "IMAGE 2025-06-15 14:26:54.jpg",
+      "IMAGE 2025-06-15 14:26:59.jpg",
+      "IMAGE 2025-06-15 14:27:03.jpg",
+      "IMAGE 2025-06-15 14:27:11.jpg",
+      "IMAGE 2025-06-15 14:27:15.jpg",
+      "IMAGE 2025-06-15 14:27:19.jpg",
+      "IMAGE 2025-06-15 14:27:28.jpg",
+      "IMAGE 2025-06-15 14:27:33.jpg",
+      "IMAGE 2025-06-15 14:27:37.jpg"
+    ];
 
-        function closeModal() {
-            document.getElementById("imageModal").style.display = "none";
-        }
+    const gallery = document.getElementById("gallery");
 
-        // بستن مدال با دکمه Esc
-        document.addEventListener("keydown", function(event) {
-            if (event.key === "Escape") {
-                closeModal();
-            }
-        });
-    </script>
+    function toJalali(gy, gm, gd) {
+      const g_d_m = [0,31,59,90,120,151,181,212,243,273,304,334];
+      let jy = (gy <= 1600) ? 0 : 979;
+      gy -= (gy <= 1600) ? 621 : 1600;
+      let gy2 = (gm > 2) ? (gy + 1) : gy;
+      let days = (365 * gy) + Math.floor((gy2 + 3) / 4) - Math.floor((gy2 + 99)/100) + Math.floor((gy2 + 399)/400) - 80 + gd + g_d_m[gm - 1];
+      jy += 33 * Math.floor(days / 12053);
+      days %= 12053;
+      jy += 4 * Math.floor(days / 1461);
+      days %= 1461;
+      if (days > 365) {
+        jy += Math.floor((days - 1)/365);
+        days = (days - 1)%365;
+      }
+      const jm = (days < 186) ? 1 + Math.floor(days/31) : 7 + Math.floor((days - 186)/30);
+      const jd = 1 + ((days < 186) ? (days % 31) : ((days - 186)%30));
+      return {jy, jm, jd};
+    }
 
+    images.forEach(src => {
+      const box = document.createElement("div");
+      box.className = "image-box";
+      box.onclick = () => openModal(src);
+
+      const img = document.createElement("img");
+      img.src = "./" + src;
+      img.alt = "us ❤️";
+
+      const dateBox = document.createElement("div");
+      dateBox.className = "date-box";
+
+      const match = src.match(/(\d{4})-(\d{2})-(\d{2})/);
+      if (match) {
+        const [_, y, m, d] = match;
+        const sh = toJalali(parseInt(y), parseInt(m), parseInt(d));
+        dateBox.textContent = `${sh.jy}/${String(sh.jm).padStart(2, '0')}/${String(sh.jd).padStart(2, '0')}`;
+      } else {
+        dateBox.textContent = "تاریخ نامشخص";
+      }
+
+      box.appendChild(img);
+      box.appendChild(dateBox);
+      gallery.appendChild(box);
+    });
+
+    function openModal(imageSrc) {
+      let modal = document.getElementById("imageModal");
+      let modalImg = document.getElementById("modalImg");
+      modal.style.display = "flex";
+      modalImg.src = imageSrc;
+    }
+
+    function closeModal() {
+      document.getElementById("imageModal").style.display = "none";
+    }
+
+    function playMusic() {
+      const music = document.getElementById("bgMusic");
+      music.play();
+    }
+
+    document.addEventListener("keydown", function(event) {
+      if (event.key === "Escape") closeModal();
+    });
+  </script>
 </body>
 </html>
